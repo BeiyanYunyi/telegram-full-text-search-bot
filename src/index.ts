@@ -21,7 +21,11 @@ bot.start((ctx) => {
   console.log(ctx.message.text);
 });
 
-bot.help((ctx) => ctx.reply("这是个获取tg聊天记录并丢进全文搜索的bot"));
+bot.help((ctx) =>
+  ctx.replyWithMarkdownV2(
+    "这是个获取tg聊天记录并丢进全文搜索的bot。\n[源码](https://github.com/BeiyanYunyi/telegram-full-text-search-bot)"
+  )
+);
 
 bot.command("help", (ctx) =>
   ctx.reply("这是个获取tg聊天记录并丢进全文搜索的bot")
