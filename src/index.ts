@@ -56,7 +56,7 @@ bot.command("search", async (ctx) => {
   }
   const rpy = result.hits.hits.map((hit, index) => {
     const idx = hit._index!.replace("tg--100", "");
-    const id = hit._id!;
+    const id = hit._id!.split('-').pop()!;
     const link = `https://t.me/c/${idx}/${id}`;
     return `${index + 1}. ${link} score:${hit._score!.toFixed(3)}`;
   });
@@ -66,7 +66,7 @@ bot.command("search", async (ctx) => {
 bot.on(message("text"), (ctx) => {
   console.log(ctx.message.text);
   zincSearch.document.createOrUpdate({
-    id: ctx.message.message_id.toString(),
+    id: ctx.message.message_id.toString().split('-').pop()!,
     index: `tg-${ctx.message.chat.id}`,
     document: ctx.message,
   });
